@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UniBuddy — Đang chuyển hướng...</title>
+    <script>
+      (function () {
+        var path = window.location.pathname;
+        var base = path.startsWith('/unibuddy/') ? '/unibuddy/' : '/';
+        if (path !== base) {
+          try {
+            window.sessionStorage.setItem(
+              'unibuddy_spa_redirect',
+              path + window.location.search + window.location.hash
+            );
+          } catch (e) {
+            // Ignore storage restrictions
+          }
+          window.location.replace(base);
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
