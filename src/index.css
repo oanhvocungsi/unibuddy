@@ -1,0 +1,166 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-sans: "Plus Jakarta Sans", "Be Vietnam Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --bg-canvas: #F6F8FC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-subtle: #F1F5F9;
+  --border-hairline: #E2E8F0;
+  --border-strong: #CBD5E1;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --accent-primary: #2B59C3;
+  --accent-primary-hover: #1E44A3;
+  --accent-primary-soft: #EEF3FC;
+  --accent-primary-ink: #FFFFFF;
+  --accent-solid: #2B59C3;
+  --accent-solid-hover: #1E44A3;
+  --accent-solid-ink: #FFFFFF;
+  --status-success: #15803D;
+  --status-success-solid: #15803D;
+  --status-success-soft: #DCFCE7;
+  --status-warning: #B45309;
+  --status-warning-soft: #FEF3C7;
+  --status-danger: #B91C1C;
+  --status-danger-solid: #B91C1C;
+  --status-danger-soft: #FEE2E2;
+  --focus-ring: #2B59C3;
+}
+
+html.dark {
+  color-scheme: dark;
+  --bg-canvas: #111622;
+  --bg-surface: #181F2E;
+  --bg-surface-subtle: #1F283B;
+  --border-hairline: #2B364B;
+  --border-strong: #3B4963;
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --accent-primary: #7BA4F8;
+  --accent-primary-hover: #93B4FA;
+  --accent-primary-soft: rgba(43, 89, 195, 0.24);
+  --accent-primary-ink: #0B1220;
+  --accent-solid: #2B59C3;
+  --accent-solid-hover: #3666D4;
+  --accent-solid-ink: #FFFFFF;
+  --status-success: #4ADE80;
+  --status-success-solid: #15803D;
+  --status-success-soft: rgba(21, 128, 61, 0.24);
+  --status-warning: #FBBF24;
+  --status-warning-soft: rgba(180, 83, 9, 0.24);
+  --status-danger: #F87171;
+  --status-danger-solid: #B91C1C;
+  --status-danger-soft: rgba(185, 28, 28, 0.24);
+  --focus-ring: #7BA4F8;
+}
+
+/* Ensure any hardcoded text-white badges/tabs on accent/status fills stay >= 4.5:1 in dark mode */
+html.dark .bg-\[var\(--accent-primary\)\].text-white {
+  background-color: var(--accent-solid);
+}
+
+html.dark .bg-\[var\(--accent-primary\)\].text-white:hover {
+  background-color: var(--accent-solid-hover);
+}
+
+html.dark .bg-\[var\(--status-danger\)\].text-white {
+  background-color: var(--status-danger-solid);
+}
+
+html.dark .bg-\[var\(--status-success\)\].text-white {
+  background-color: var(--status-success-solid);
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    line-height: 1.55;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  button,
+  [role="button"],
+  a[href],
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background-color: var(--accent-primary);
+  color: var(--accent-primary-ink);
+  font-weight: 600;
+  border-radius: 0.5rem;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* Reduced motion support: system preference OR explicit user setting */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
